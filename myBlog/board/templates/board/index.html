@@ -1,10 +1,17 @@
-<input name="user_message" />
-<input type="submit" value="Submit" />
+<form action="" method="post">
+{% csrf_token %}
+留言 <input name="user_message" />
+昵称 <input name="user_name" />
+<input type="submit" name = 'submit' value="发表" />
+</form>
 
 {% if message_list %}
     <ul>
     {% for message in message_list %}
-        <li><a href="/board/{{ message.id }}/">{{ message.message_text }}</a></li>
+        <p>
+            <input type="submit" name = 'like' value="feels good! + {{ message.support }}">
+            “{{ message.message_text }}” by {{ message.message_name}} {{ message.pub_date}}
+        </p>
     {% endfor %}
     </ul>
 {% else %}
