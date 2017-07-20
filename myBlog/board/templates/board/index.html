@@ -1,19 +1,31 @@
-<form action="" method="post">
+<form name='submit' action="" method="post">
 {% csrf_token %}
-留言 <input name="user_message" />
-昵称 <input name="user_name" />
-<input type="submit" name = 'submit' value="发表" />
+    <div style="margin-left: 40px;margin-bottom: 40px">
+    <h3>留言</h3>
+    <textarea name="user_message" style="width:500px;height:100px;resize: none"></textarea>
+    <h3>昵称</h3>
+    <input name="user_name" />
+    <input type="submit" name = 'submit' value="发表" />
+    </div>
 </form>
-
+<h3 style="padding-left: 40px">过往留言</h3>
 {% if message_list %}
     <ul>
     {% for message in message_list %}
         <p>
-            <input type="submit" name = 'like' value="feels good! + {{ message.support }}">
-            “{{ message.message_text }}” by {{ message.message_name}} {{ message.pub_date}}
+            <form action="" method="GET">
+                <div style="border-bottom: solid 1px lightgrey;margin-right: 40px">
+                    <input type="hidden" name="msg_id" value = {{ message.id }}>
+                    <input type="submit" value="feels good! + {{ message.support }}">
+                    <p>{{ message.message_text }}</p>
+                    <p>—— {{ message.message_name}} —— {{ message.pub_date}}</p>
+                </div>
+            </form>
         </p>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No Message!</p>
+    <div style="border-bottom: solid 1px lightgrey;margin-right: 40px;margin-left: 40px">
+        <p>还没有人给你留言哦！</p>
+    </div>
 {% endif %}
