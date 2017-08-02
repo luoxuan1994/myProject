@@ -1,0 +1,19 @@
+#mainpage{
+    background:white url("../images/TempleStreet.jpg") no-repeat;
+    background-size: 100%;
+}
+
+#mainpage_title{
+    font-size: 3em;
+    color: white;
+}
+
+#mainpage_folder a:link{
+    color: white;
+    text-decoration: none;
+}
+
+#mainpage_folder a:visited{
+    color: white;
+    text-decoration: none;
+}
